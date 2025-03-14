@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+        font-family: Arial, sans-serif;
+    }
+    #text {
+        margin-bottom: 20px;
+    }
+    input[type="range"], button {
+        margin: 10px;
+    }
+    </style>
+</head>
+<body>
+    <h1 id="text">Adjustable Font Size Text</h1>
+    <label for="fontSizeSlider">Adjust Font Size:</label>
+    <input type="range" id="fontSizeSlider" min="10" max="40" value="16">
+    <button id="increaseFont">Increase Font Size</button>
+    <button id="decreaseFont">Decrease Font Size</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const textElement = document.getElementById('text');
+            const fontSizeSlider = document.getElementById('fontSizeSlider');
+            const increaseFontBtn = document.getElementById('increaseFont');
+            const decreaseFontBtn = document.getElementById('decreaseFont');
+        fontSizeSlider.addEventListener('input', function() {
+            textElement.style.fontSize = fontSizeSlider.value + 'px';
+        });
+        increaseFontBtn.addEventListener('click', function() {
+            let currentSize = parseInt(window.getComputedStyle(textElement).fontSize);
+            textElement.style.fontSize = (currentSize + 1) + 'px';
+            fontSizeSlider.value = currentSize + 1;
+        })
+        decreaseFontBtn.addEventListener('click', function() {
+            let currentSize = parseInt(window.getComputedStyle(textElement).fontSize);
+            textElement.style.fontSize = (currentSize - 1) + 'px';
+            fontSizeSlider.value = currentSize - 1;
+        });
+    })
+    </script>
+</body>
+</html>
